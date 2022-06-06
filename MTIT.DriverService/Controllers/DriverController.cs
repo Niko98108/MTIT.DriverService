@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MTIT.DriverService.Data;
 using MTIT.DriverService.Models;
 
 namespace MTIT.DriverService.Controllers
@@ -22,17 +24,24 @@ namespace MTIT.DriverService.Controllers
 
                 }
         };
+        private readonly DataContext context;
+
+        public DriverController(DataContext context)
+        {
+            this.context = context;
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<Driver>>> GetDriver()
         {
           
-            return Ok(drivers);
+            return Ok(await context.Drivers.ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Driver>> GetDriver(int id)
         {
-            var driver = drivers.Find(d => d.Id == id);
+            var driver = await context.Drivers.FindAsync(id);
             if (driver == null)
                 return BadRequest("Driver Not Found");
             return Ok(driver);
@@ -41,34 +50,39 @@ namespace MTIT.DriverService.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Driver>>> AddDriver(Driver driver)
         {
-            drivers.Add(driver);
-            return Ok(drivers);
+            context.Drivers.Add(driver);
+            await context.SaveChangesAsync();
+
+            return Ok(await context.Drivers.ToListAsync());
         }
 
         [HttpPut]
         public async Task<ActionResult<List<Driver>>> UpdateDriver(Driver request)
         {
-            var driver = drivers.Find(d => d.Id == request.Id);
-            if (driver == null)
+            var dbdriver = await context.Drivers.FindAsync(request.Id);
+            if (dbdriver == null)
                 return BadRequest("Driver Not Found");
 
-            driver.DriverName = request.DriverName;
-            driver.DriverId = request.DriverId;     
-            driver.DriverType = request.DriverType; 
-            driver.IdNumber = request.IdNumber; 
-            driver.Status = request.Status;
+            dbdriver.DriverName = request.DriverName;
+            dbdriver.DriverId = request.DriverId;
+            dbdriver.DriverType = request.DriverType;
+            dbdriver.IdNumber = request.IdNumber;
+            dbdriver.Status = request.Status;
 
-            return Ok(driver);
+            await context.SaveChangesAsync();
+
+            return Ok(await context.Drivers.ToListAsync());
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Driver>>> DeleteDriver(int id)
         {
-            var driver = drivers.Find(d => d.Id == id);
-            if (driver == null)
+            var dbdriver = await context.Drivers.FindAsync(id);
+            if (dbdriver == null)
                 return BadRequest("Driver Not Found");
-            drivers.Remove(driver);
-            return Ok(driver);
+            context.Drivers.Remove(dbdriver);
+            await context.SaveChangesAsync();
+            return Ok(await context.Drivers.ToListAsync());
         }
     }
 }
