@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTIT.DriverService", "MTIT.DriverService\MTIT.DriverService.csproj", "{E08A949F-FF57-4307-9F3B-AFE1BD288E60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTIT.DriverService", "MTIT.DriverService\MTIT.DriverService.csproj", "{E08A949F-FF57-4307-9F3B-AFE1BD288E60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhetherApi", "..\WhetherApi\WhetherApi.csproj", "{9DD217EA-ED50-4A96-9089-83E425FA9B26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ocelot.ApiGateway", "..\Ocelot.ApiGateway\Ocelot.ApiGateway.csproj", "{541A5DFB-C379-4950-89DE-50E42C6E7328}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{E08A949F-FF57-4307-9F3B-AFE1BD288E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E08A949F-FF57-4307-9F3B-AFE1BD288E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E08A949F-FF57-4307-9F3B-AFE1BD288E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD217EA-ED50-4A96-9089-83E425FA9B26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD217EA-ED50-4A96-9089-83E425FA9B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD217EA-ED50-4A96-9089-83E425FA9B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD217EA-ED50-4A96-9089-83E425FA9B26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{541A5DFB-C379-4950-89DE-50E42C6E7328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541A5DFB-C379-4950-89DE-50E42C6E7328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541A5DFB-C379-4950-89DE-50E42C6E7328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541A5DFB-C379-4950-89DE-50E42C6E7328}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

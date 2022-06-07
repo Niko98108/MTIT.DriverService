@@ -11,19 +11,19 @@ namespace MTIT.DriverService.Controllers
     public class DriverController : ControllerBase
     {
 
-        private static List<Driver> drivers = new List<Driver>
-        {
-            new Driver
-                {
-                    Id = 1,
-                    DriverName="Saman",
-                    DriverId ="001",
-                    DriverType="Part Time",
-                    IdNumber="123456789V",
-                    Status="1"
+      //  private static List<Driver> drivers = new List<Driver>
+        //{
+          //  new Driver
+              //  {
+             //       Id = 1,
+             //       DriverName="Saman",
+             //       DriverId ="001",
+             //       DriverType="Part Time",
+             //       IdNumber="123456789V",
+             //       Status="1"
 
-                }
-        };
+            //    }
+       // };
         private readonly DataContext context;
 
         public DriverController(DataContext context)
@@ -56,7 +56,7 @@ namespace MTIT.DriverService.Controllers
             return Ok(await context.Drivers.ToListAsync());
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult<List<Driver>>> UpdateDriver(Driver request)
         {
             var dbdriver = await context.Drivers.FindAsync(request.Id);
